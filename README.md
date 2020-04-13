@@ -1,5 +1,5 @@
 # Chore Board
-Chore board for housemates to keep track of who has done which chore
+Chore board to keep track of who has done which chore
 
 * Install requirements
 ```
