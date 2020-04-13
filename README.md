@@ -13,6 +13,8 @@ export FLASK_APP="main.py"
 
 * Kick it off
 ```
-python3 -m flask run
+python3 -m flask run --host=0.0.0.0
 ```
 
+![Image of Yaktocat]
+(https://octodex.github.com/images/yaktocat.png) 
