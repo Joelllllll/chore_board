@@ -1,0 +1,24 @@
+<html>
+    <div>
+        <h1>
+        Welcome to the Chores Board <br>
+        <!-- New Chore -->
+        <img src="/static/new_chore.png" width="100" height="80" alt="New Chore">
+            <a href="/new_chore">New Chore</a> <br>
+        <!-- Chore Board -->
+        <img src="/static/chore_board.png" width="100" height="80" alt="Chore Board">
+            <a href="/chore_board">Chore Board</a> <br>
+        <!-- Delete Chore -->
+        <img src="/static/delete_chore.png" width="100" height="80" alt="Delete Chore">
+            <a href="/delete_chore">Delete Chore</a> <br>
+        </h1>
+    </div>
+    <head>
+        <title>
+            Chores Board
+        </title>
+        {% block new_chores %}{% endblock %}
+        {% block chore_board %}{% endblock %}
+        {% block delete_chores %}{% endblock %}
+    </head>
+</html>

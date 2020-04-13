@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block chore_board %}
+    <h1>Chore Board</h1>
+<!-- The table -->
+    <table style="width:100%" cellspacing="10" bgcolor="#7FFFD4" border="2">
+        <tr>
+            <!-- Table headings -->
+            <th>ID</th>
+            <th>User</th>
+            <th>Chore</th>
+            <th>Time Completed</th>
+            <th>Hours ago</th>
+        </tr>
+        <!-- data is the result of a query passed to the template manager, this cycles through the object -->
+        {% for item in data %}
+        <tr>
+            <td style="text-align:center">{{item.id}}</td>
+            <td style="text-align:center">{{item.user}}</td>
+            <td style="text-align:center">{{item.chore}}</td>
+            <td style="text-align:center">{{item.datetime}}</td>
+            <td style="text-align:center">{{item.diff}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
