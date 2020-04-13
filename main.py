@@ -86,4 +86,3 @@ if __name__ == '__main__':
 ## TODO:
 # Actual log-in feature
 # change column hours ago to be days when > 24 hours
-# Make requirements file
