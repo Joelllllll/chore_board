@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block reset_db %}
+    <h1>Reset Database</h1>
+    <p>You are about to wipe the database. Press OK to continue</p>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
