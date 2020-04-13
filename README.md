@@ -1,12 +1,12 @@
 # Chore Board
 Chore board for housemates
 
-* Just install requirements
+* Install requirements
 ```
 pip install -r requirements.txt
 ```
 
-* Set the environment variable
+* Set this environment variable
 ```
 export FLASK_APP="main.py"
 ```
