@@ -25,12 +25,7 @@ http://0.0.0.0:5000/
 ![Image](https://github.com/Joelllllll/chore_board/blob/master/static/images/run_flask.png)
 
 On the first run make sure the click "Initialize Database" so you have something to store your chores in
-
-
-
-
-
-
+<br>
 
 
 
