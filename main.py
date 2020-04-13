@@ -67,3 +67,7 @@ def delete_chore():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', threaded=True)
+
+## TODO:
+# Have a reset DB button
+# Actual log in feature
