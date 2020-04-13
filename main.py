@@ -72,3 +72,4 @@ if __name__ == '__main__':
 # Have a reset DB button
 # Actual log-in feature
 # change column hours ago to be days when > 24 hours
+# Make requirements file
