@@ -1,5 +1,18 @@
 # chore_board
 Chore board for housemates
 
-Just install requirements and press "Initialise Database" in the bottom right hand corner of the UI
+Just install requirements
+```
 pip install -r requirements.txt
+```
+
+Set the environment variable
+```
+export FLASK_APP="main.py"
+```
+
+Kick it off
+```
+python3 -m flask run
+```
+
