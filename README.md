@@ -3,7 +3,7 @@ Chore board for housemates to keep track of who has done which chore
 
 * Install requirements
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 * Set this environment variable
