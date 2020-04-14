@@ -26,7 +26,14 @@ class Chores(db.Model):
 ##----------------------------------------ROUTES----------------------------------------##
 @app.route('/')
 def index():
-    return render_template('home.html')
+    # We want to display most recent activity
+    chores = db.engine.execute(
+        """SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
+        FROM chores
+        ORDER BY datetime DESC
+        LIMIT 3"""
+        )
+    return render_template('home.html', table=chores, data=chores)
 
 ## New Chore
 @app.route('/new_chore', methods=['GET', 'POST'])
@@ -86,3 +93,5 @@ if __name__ == '__main__':
 ## TODO:
 # Actual log-in feature
 # change column hours ago to be days when > 24 hours
+# date current datetime
+# Recent activity
