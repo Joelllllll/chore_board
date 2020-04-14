@@ -2,8 +2,8 @@
 
 {% block home %}
     <h1>
-        <h1 align="center" style="margin-top:-400">Recent Activity</h1>
-        <table style="width:50%;border:1px solid black;margin-left:auto;margin-right:auto;margin-top:0;padding-top:0" align="center">
+        <h1 align="center" style="margin-top:-380">Recent Activity</h1>
+    <table style="width:50%;border:1px solid black;margin-left:300;margin-right:auto;margin-top:0;padding-top:0" align="center">
         {% for item in data %}
         <tr>
             <td style="font-size:30px;text-align:center">{{item.user}} did {{item.chore}} {{item.diff}} hour(s) ago</td>

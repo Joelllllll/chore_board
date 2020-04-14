@@ -20,6 +20,7 @@ class Chores(db.Model):
     user = db.Column(db.String, nullable=False)
     datetime = db.Column(db.DateTime, nullable=False, default=datetime.now())
 
+# Log when an addition to the table is made
     def __repr__(self):
         return 'Chore ' + str(self.id)
 
@@ -93,5 +94,4 @@ if __name__ == '__main__':
 ## TODO:
 # Actual log-in feature
 # change column hours ago to be days when > 24 hours
-# date current datetime
-# Recent activity
+# date current datetime?
