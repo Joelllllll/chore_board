@@ -5,10 +5,10 @@
     <h1>
         <h1 align="center" style="margin-top:-380">Recent Activity</h1>
         <!-- Recent Activity -->
-            <table style="width:50%;border:1px solid black;margin-left:300;margin-right:auto;margin-top:0;padding-top:0" align="center">
+            <table style="width:50%;border:1px solid black;margin-left:400;margin-right:0;margin-top:0;padding-top:0" align="center">
                 {% for item in data %}
                     <tr>
-                        <td style="font-size:30px;text-align:center">{{item.user}} did {{item.chore}} {{item.diff}} hour(s) ago</td>
+                        <td style="font-size:30px;text-align:center">{{item.user}} completed {{item.chore}} {{item.diff}} hour(s) ago</td>
                     </tr>
                 {% endfor %}
             </table>
