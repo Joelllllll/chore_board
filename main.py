@@ -28,13 +28,18 @@ class Chores(db.Model):
 @app.route('/')
 def index():
     # We want to display most recent activity
-    chores = db.engine.execute(
-        """SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
-        FROM chores
-        ORDER BY datetime DESC
-        LIMIT 3"""
-        )
-    return render_template('home.html', table=chores, data=chores)
+    try:
+        chores = db.engine.execute(
+            """SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
+            FROM chores
+            ORDER BY datetime DESC
+            LIMIT 3"""
+            )
+    except sqlalchemy.exc.OperationalError:
+        chores = db.engine.execute(
+            """SELECT 'No Recent Activity'"""
+            )
+    return render_template('home.html')
 
 ## New Chore
 @app.route('/new_chore', methods=['GET', 'POST'])
