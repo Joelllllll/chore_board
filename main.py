@@ -37,10 +37,9 @@ def index():
             LIMIT 3"""
             )
     except sqlalchemy.exc.OperationalError:
-        chores = db.engine.execute(
-            """SELECT 'No Recent Activity'"""
-            )
-    return render_template('home.html')
+        return render_template('home.html')
+    
+    return render_template('home.html', data=chores)
 
 ## New Chore
 @app.route('/new_chore', methods=['GET', 'POST'])
