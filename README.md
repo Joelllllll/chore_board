@@ -1,5 +1,6 @@
 # Chore Board
 Chore board to keep track of who has done which chore
+Mainly just to learn to use flask
 
 * Install requirements
 ```
