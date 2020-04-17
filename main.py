@@ -1,3 +1,4 @@
+import glob
 from datetime import datetime
 
 from flask import Flask, render_template, redirect, url_for
@@ -29,17 +30,20 @@ class Chores(db.Model):
 @app.route('/')
 def index():
     # We want to display most recent activity
-    try:
-        chores = db.engine.execute(
-            """SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
-            FROM chores
-            ORDER BY datetime DESC
-            LIMIT 3"""
-            )
-    except sqlalchemy.exc.OperationalError:
-        return render_template('home.html')
-    
-    return render_template('home.html', data=chores)
+    # Check to see if a .db file exists yet
+    database = glob.glob('*.db')
+    if database:
+        try:
+            chores = db.engine.execute(
+                f"""SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
+                FROM {database[0].split('.')[0]}
+                ORDER BY datetime DESC
+                LIMIT 3"""
+                )
+            return render_template('home.html', data=chores)
+        except:
+            pass
+    return render_template('home.html')
 
 ## New Chore
 @app.route('/new_chore', methods=['GET', 'POST'])
@@ -66,10 +70,11 @@ def delete_chore():
 ## Chore Table
 @app.route('/chore_board', methods=['GET', 'POST'])
 def display_chore_board():
+    database = glob.glob('*.db')
     ## sqlite doesn't do disticnt on() so we need to work around it a little
     chores = db.engine.execute(
-        """SELECT id, user, chore, MAX(datetime(datetime)) AS datetime, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
-        FROM chores
+        f"""SELECT id, user, chore, MAX(datetime(datetime)) AS datetime, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
+        FROM {database[0].split('.')[0]}
         GROUP BY chore
         ORDER BY datetime DESC"""
         )
