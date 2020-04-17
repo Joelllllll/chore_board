@@ -100,8 +100,3 @@ def delete_database():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000', threaded=True)
-
-## TODO:
-# Actual log-in feature
-# change column hours ago to be days when > 24 hours
-# date current datetime?
