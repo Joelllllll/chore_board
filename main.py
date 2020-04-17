@@ -31,12 +31,11 @@ class Chores(db.Model):
 def index():
     # We want to display most recent activity
     # Check to see if a .db file exists yet
-    database = glob.glob('*.db')
-    if database:
+    if glob.glob('*.db'):
         try:
             chores = db.engine.execute(
                 f"""SELECT user, chore, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
-                FROM {database[0].split('.')[0]}
+                FROM "chores"
                 ORDER BY datetime DESC
                 LIMIT 3"""
                 )
@@ -70,15 +69,16 @@ def delete_chore():
 ## Chore Table
 @app.route('/chore_board', methods=['GET', 'POST'])
 def display_chore_board():
-    database = glob.glob('*.db')
-    ## sqlite doesn't do disticnt on() so we need to work around it a little
-    chores = db.engine.execute(
-        f"""SELECT id, user, chore, MAX(datetime(datetime)) AS datetime, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
-        FROM {database[0].split('.')[0]}
-        GROUP BY chore
-        ORDER BY datetime DESC"""
-        )
-    return render_template('chore_board.html', table=chores, data=chores)
+    if glob.glob('*.db'):
+        ## sqlite doesn't do disticnt on() so we need to work around it a little
+        chores = db.engine.execute(
+            f"""SELECT id, user, chore, MAX(datetime(datetime)) AS datetime, ((STRFTIME('%s','NOW') + 10 * 3600) - STRFTIME('%s',"datetime")) / 3600 AS diff
+            FROM "chores"
+            GROUP BY chore
+            ORDER BY datetime DESC"""
+            )
+        return render_template('chore_board.html', table=chores, data=chores)
+    return render_template('no_db_error.html')
 
 ## DB init
 @app.route('/db_init')
