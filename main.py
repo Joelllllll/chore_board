@@ -20,7 +20,7 @@ class Chores(db.Model):
     id = db.Column(db.Integer, index=True, primary_key=True)
     chore = db.Column(db.String(100), nullable=False)
     user = db.Column(db.String, nullable=False)
-    datetime = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    datetime = db.Column(db.DateTime, nullable=False)
 
 # Log when an addition to the table is made
     def __repr__(self):
@@ -49,7 +49,7 @@ def index():
 def new_chore():
     form = forms.NewChoreForm()
     if form.validate_on_submit():
-        db.session.add(Chores(user=form.username.data, chore=form.chore.data))
+        db.session.add(Chores(user=form.username.data, chore=form.chore.data, datetime=datetime.now()))
         db.session.commit()
         ## Empty the fields
         form = forms.NewChoreForm(formdata=None)
